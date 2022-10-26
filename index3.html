@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Debian and VBox с нуля!">
+    <meta name="keywords" content="Debian, debian, vbox, Vbox">
+    <title>Debian с нуля!</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="debian-logo (1).ico">
+</head>
+<body>
+    <div class="as">
+    <nav class="navbar">
+     <ul>
+         <li><a href="index.html">Установка Debian 11.5.0</a></li>
+         <li><a href="index2.html">Настройка репозитория</a></li>
+         <li><a href="index3.html">Установка и настройка DHCP</a></li>
+         <li><a href="#">Установка и настройка DNS</a></li>
+     </ul>  
+    </nav>
+    </div>
+  <div class="container">
+    <div class="poo">
+        <h1 class="deb1">Установка и настройка DHCP</h1>
+        <p>DHCP - протокол прикладного уровня модели TCP/IP, служит для назначения IP-адреса клиенту. Это следует из его названия - Dynamic Host Configuration Protocol.</p>
+        <p>В настройках виртуальной машины добавляем второй сетевой адаптер.
+        <br> Тип подключения выбираем "Внутренняя сеть"
+        <br> Устанавливаем машину CLI-1 на которую будем раздавать dhcp, аналогично добавляем второй сетевой адаптер на неё.
+        </p>
+        <img src="png_index3/1.PNG" alt="">
+        <p>Устанавливаем пакеты dhcp сервера.
+            <br><u>apt install isc-dhcp-server</u>
+        </p>
+        <img src="png_index3/2.PNG" alt="">
+        <img src="png_index3/3.PNG" alt="">
+        <p>Узнаем название нашего сетевого интерфейса и поставим статический ip.
+        <br><u>ip a</u>
+        <br>В моём случае нужный мне интерфейс называется "<u>enp0s8</u>" 
+        </p>
+        <img src="png_index3/4.PNG" alt="">
+        <p>С помощью команды "<u>nano /etc/network/interfaces</u>" отредактируем файл "interfaces"
+        <br>Напишем:
+        <br>auto enp0s8
+        <br>iface enp0s8 inet static
+        <br>address 10.10.10.254/24
+        <br>И закомментируем интерфейс enp0s3.
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        <br>Перезагрузим сетевые службы и проверим применение наших настроек.
+        <br><u>systemctl restart networking</u>
+        <br><u>ip a</u>
+        </p>
+        <img src="png_index3/5.PNG" alt="">
+        <img src="png_index3/6.PNG" alt="">
+        <img src="png_index3/7.PNG" alt="">
+        <p>С помощью команды "<u>nano /etc/dhcp/dhcpd.conf</u>" отредактируем файл "dhcpd.conf"
+        <br>Напишем:
+        <br>subnet 10.10.10.0 netmask 255.255.255.0 {
+        <br>range 10.10.10.100 10.10.10.200;
+        <br>}
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        </p>
+        <img src="png_index3/8.PNG" alt="">
+        <img src="png_index3/9.PNG" alt="">
+        <p>С помощью команды "<u>nano /etc/default/isc-dhcp-server</u>" отредактируем файл "isc-dhcp-server"
+        <br>В строку INTREFACESv4=""
+        <br>Впишем название нашего интерфейса enp0s8
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        </p>
+        <img src="png_index3/10.PNG" alt="">
+        <img src="png_index3/11.PNG" alt="">
+        <p>Перезагружаем службу dhcp.
+            <br><u>systemctl restart isc-dhcp-server</u>
+            <br>Выводим статус службы.
+            <br><u>systemctl status isc-dhcp-server</u>
+        </p>
+        <img src="png_index3/12.PNG" alt="">
+        <img src="png_index3/13.PNG" alt="">
+        <p>Переходим к проверке нашего DHCP сервера.
+        <br>Заходим на CLI-1
+        <br> С помощью команды "<u>nano /etc/network/interfaces</u>" отредактируем файл "interfaces"
+        <br>Напишем:
+        <br>auto enp0s8
+        <br>iface enp0s8 inet dhcp
+        <br>И закомментируем интерфейс enp0s3.
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        </p>
+        <img src="png_index3/14.PNG" alt="">
+        <img src="png_index3/15.PNG" alt="">
+        <p>Перезагрузим службу networking, проверим получение ip по dhcp.
+            <br><u>systemctl restart networking</u>
+            <br><u>ip a</u>
+        </p>
+        <img src="png_index3/16.PNG" alt="">
+  
+        <h4 class="deb2">Умные люди тоже наступают на грабли, но только для того, чтобы поднять их с земли не нагибаясь.
+
+        </h4>
+          <nav class="navbar1">
+           <ul>
+               <li><a href="https://vk.com/jacquefresko" target="_blank">Моя страница в ВК</a></li>
+               <li><a href="#">Полезные ссылки</a></li>
+               <li><a>Моя почта:kolua.ruut@gmail.com</a></li>           
+           </ul>  
+          </nav>
+          </div>
+    </div>
+  </div>
+
+</body>
+</html>

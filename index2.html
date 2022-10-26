@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Debian and VBox с нуля!">
+    <meta name="keywords" content="Debian, debian, vbox, Vbox">
+    <title>Debian с нуля!</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="debian-logo (1).ico">
+</head>
+<body>
+    <div class="as">
+    <nav class="navbar">
+     <ul>
+         <li><a href="index.html">Установка Debian 11.5.0</a></li>
+         <li><a href="index2.html">Настройка репозитория</a></li>
+         <li><a href="index3.html">Установка и настройка DHCP</a></li>
+         <li><a href="#">Установка и настройка DNS</a></li>
+     </ul>  
+    </nav>
+    </div>
+  <div class="container">
+    <div class="poo">
+        <h1 class="deb1">Настройка репозитория</h1>
+        <p>Репозиторий - это место в сети интернет, где хранятся какие-либо данные. Репозиторий операционной системы линукс - это место где хранятся программы (пакеты) этой операционной системы.</p>
+        <p>Для работы с репозиторием нам будет нужен выход в интернет.</p>
+        <p>В настройках виртуальной машины выбираем во вкладке сеть, тип подключения NAT или Сетевой мост. Запускаем машину.</p>
+        <img src="png_index2/1.PNG" alt="">
+        <p>Зайдем в машину под root, сменим имя хоста, выведем командой cat содержимое файла hostname.
+        <br> root 
+        <br> вводим созданный нами пароль 
+        <br> <u>echo dhcp > /etc/hostname</u> (командой echo меняем содержимое файла hostname на "dhcp")
+        <br> <u>cat /etc/hostname</u> (командой cat выводим содержимое файла hostname)
+        <br> <u>reboot</u> (командой reboot перезагружаем машину, чтобы наши настройки применились)</p>
+        <img src="png_index2/2.PNG" alt="">
+        <p>Узнаем название нашего интерфейса, получим ip по dhcp, отредактируем "sources.list". 
+        <br><u>ip a</u> (команда выводит информацию о cетевых интерфейсах)
+        <br>В моём случае нужный мне сетевой интерфейс называется "<u>enp0s3</u>".
+        </p>
+        <img src="png_index2/3.PNG" alt="">
+        <p>С помощью команды "<u>nano /etc/network/interfaces</u>" отредактируем файл "interfaces"
+        <br>allow-hotplug enp0s3 заменим на:
+        <br>auto enp0s3
+        <br>iface enp0s3 inet dhcp
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        </p>
+        <img src="png_index2/4.PNG" alt="">
+        <img src="png_index2/5.PNG" alt="">
+        <p>Перезагрузим службу networking, проверим получение ip по dhcp.
+        <br><u>systemctl restart networking</u>
+        <br><u>ip a</u>
+        </p>
+        <img src="png_index2/6.PNG" alt="">
+        <p>С помощью команды "<u>nano /etc/apt/sources.list</u>" отредактируем файл "sources.list" 
+        <br> Закомментируем ненужные строки и напишем свою:
+        <br> deb http://ftp.ru.debian.org/debian/ bullseye main
+        <br>Cохраним (Ctrl+X, Y, Enter )
+        </p>
+        <img src="png_index2/7.PNG" alt="">
+        <img src="png_index2/8.PNG" alt="">
+        <p>Командой "<u>apt update</u>" обновим пакеты нашей машины.</p>
+        <h4 class="deb2">Ученье - свет, а неученье - тьма.
+        <br>Безделье - игрушка дьявола.
+        </h4>
+          <nav class="navbar1">
+           <ul>
+               <li><a href="https://vk.com/jacquefresko" target="_blank">Моя страница в ВК</a></li>
+               <li><a href="#">Полезные ссылки</a></li>
+               <li><a>Моя почта: kolua.ruut@gmail.com</a></li>           
+           </ul>  
+          </nav>
+          </div>
+    </div>
+  </div>
+
+</body>
+</html>

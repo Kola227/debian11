@@ -1,0 +1,130 @@
+ * {
+    padding-top: 0;
+    margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
+body {
+font-size: 20px;
+    line-height: 1.6em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 1000;
+    background:#eee
+}
+
+.container {
+    width: auto;
+    margin: auto;
+    
+
+}
+img {
+    display: block;
+    margin: 0 auto;
+
+}
+
+p {
+    /* background: linear-gradient(#eee,lightblue,#eee ); */
+    padding: 20px;
+    text-align: left;
+    width: 900px;
+    font-size: 23px;
+    /* height: 300px; */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.deb1 {
+    background: linear-gradient(lightblue, #eee);
+    text-align: center;
+    padding: 30px 20px 10px 10px;
+    margin: 0px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    transition: all .6s;
+}
+
+a:visited {
+    color: none;
+}
+
+a:hover {
+    color: rgb(98, 0, 255);
+    font-size: 23px;
+}
+
+.navbar {
+    background: lightblue;
+    /* padding: 10px 20px; */
+    margin-bottom: 0px;
+    padding-top: 30px;
+}
+
+.as {
+    text-align: center;
+    width: auto;
+    margin: auto;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navbar ul li {
+    margin-right: 10px;
+    padding: 0 20px;
+}
+
+/* .navbar ul li:hover {
+    /* background: lavender;
+} */
+
+.as1 {
+    text-align: center;
+    width: auto;
+    margin: auto;
+}
+
+.navbar1 {
+    background: lightblue;
+    /* padding: 10px 20px; */
+    margin-bottom: 0px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* .navbar1 ul li:hover {
+    /* background: lavender; 
+} */
+
+.navbar1 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navbar1 ul li {
+    margin-right: 10px;
+    padding: 0 20px;
+}
+
+.deb2 {
+    background: linear-gradient(#eee,lightblue);
+    text-align: center;
+    padding: 30px 20px 10px 10px;
+    margin: 0px;
+}
